@@ -7,6 +7,10 @@ class CollectionsController < ApplicationController
     @portfolio_item = Collection.new
   end
 
+  def edit
+    @portfolio_item = Collection.find(params[:id])
+  end
+
   def create
     @portfolio_item = Collection.new(params.require(:collection).permit(:title, :subtitle, :body))
 
@@ -15,6 +19,18 @@ class CollectionsController < ApplicationController
         format.html { redirect_to collections_path, notice: 'Your portfolio item is now live.' }
       else
         format.html { render :new }
+      end
+    end
+  end
+
+  def update
+    @portfolio_item = Collection.find(params[:id])
+
+    respond_to do |format|
+      if @portfolio_item.update(params.require(:collection).permit(:title, :subtitle, :body))
+        format.html { redirect_to collections_path, notice: 'The record successfully updated.' }
+      else
+        format.html { render :edit }
       end
     end
   end
