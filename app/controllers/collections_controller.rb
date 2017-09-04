@@ -3,6 +3,10 @@ class CollectionsController < ApplicationController
     @portfolio_items = Collection.all
   end
 
+  def show
+    @portfolio_item = Collection.find(params[:id])
+  end
+
   def new
     @portfolio_item = Collection.new
   end
