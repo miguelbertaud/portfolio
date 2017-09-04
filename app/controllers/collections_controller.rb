@@ -39,5 +39,14 @@ class CollectionsController < ApplicationController
     end
   end
 
+  def destroy
+    @portfolio_item = Collection.find(params[:id])
+
+    @portfolio_item.destroy
+    respond_to do |format|
+      format.html { redirect_to collections_url, notice: 'Record was removed' }
+    end
+  end
+
 
 end
