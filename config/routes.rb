@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :collections, except: [:show]
-  get 'angular-items'. to: 'collections#angular'
+  get 'angular-items', to: 'collections#angular'
   get 'collection/:id', to: 'collections#show', as: 'collection_show'
   root to: 'pages#home'
   get 'about-me', to: 'pages#about'
