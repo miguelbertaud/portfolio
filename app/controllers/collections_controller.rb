@@ -3,12 +3,17 @@ class CollectionsController < ApplicationController
     @portfolio_items = Collection.all
   end
 
+  def angular
+    @angular_portfolio_items = Collection.angular
+  end
+
   def show
     @portfolio_item = Collection.find(params[:id])
   end
 
   def new
     @portfolio_item = Collection.new
+    3.times{ @portfolio_item.technologies.build }
   end
 
   def edit
@@ -16,7 +21,8 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    @portfolio_item = Collection.new(params.require(:collection).permit(:title, :subtitle, :body))
+    @portfolio_item = Collection.new(params.require(:collection).permit(:title, :subtitle, :body,
+    technologies_attributes: [:name]))
 
     respond_to do |format|
       if @@portfolio_item.save
