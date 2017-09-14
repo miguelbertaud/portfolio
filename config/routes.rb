@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :collections, except: [:show]
   get 'angular-items', to: 'collections#angular'
   get 'collection/:id', to: 'collections#show', as: 'collection_show'
