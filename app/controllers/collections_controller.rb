@@ -21,8 +21,7 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    @portfolio_item = Collection.new(params.require(:collection).permit(:title, :subtitle, :body,
-    technologies_attributes: [:name]))
+    @portfolio_item = Collection.new(collection_params)
 
     respond_to do |format|
       if @@portfolio_item.save
@@ -37,7 +36,7 @@ class CollectionsController < ApplicationController
     @portfolio_item = Collection.find(params[:id])
 
     respond_to do |format|
-      if @portfolio_item.update(params.require(:collection).permit(:title, :subtitle, :body))
+      if @portfolio_item.update(collection_params)
         format.html { redirect_to collections_path, notice: 'The record successfully updated.' }
       else
         format.html { render :edit }
@@ -54,5 +53,14 @@ class CollectionsController < ApplicationController
     end
   end
 
+  private
+
+    def collection_params
+      params.require(:collection).permit(:title,
+                                         :subtitle,
+                                         :body,
+                                         technologies_attributes: [:name]
+                                        )
+    end
 
 end
