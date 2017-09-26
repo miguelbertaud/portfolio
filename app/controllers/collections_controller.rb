@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
   layout 'collection'
-  
+
   def index
     @portfolio_items = Collection.all
   end
