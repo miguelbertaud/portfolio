@@ -1,4 +1,5 @@
 class CollectionsController < ApplicationController
+  before_action :set_portfolio_item, only: [:edit, :update, :show, :destroy]
   layout 'collection'
 
   def index
@@ -10,7 +11,6 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    @portfolio_item = Collection.find(params[:id])
   end
 
   def new
@@ -19,7 +19,6 @@ class CollectionsController < ApplicationController
   end
 
   def edit
-    @portfolio_item = Collection.find(params[:id])
   end
 
   def create
@@ -35,8 +34,6 @@ class CollectionsController < ApplicationController
   end
 
   def update
-    @portfolio_item = Collection.find(params[:id])
-
     respond_to do |format|
       if @portfolio_item.update(collection_params)
         format.html { redirect_to collections_path, notice: 'The record successfully updated.' }
@@ -47,8 +44,6 @@ class CollectionsController < ApplicationController
   end
 
   def destroy
-    @portfolio_item = Collection.find(params[:id])
-
     @portfolio_item.destroy
     respond_to do |format|
       format.html { redirect_to collections_url, notice: 'Record was removed' }
@@ -63,6 +58,10 @@ class CollectionsController < ApplicationController
                                          :body,
                                          technologies_attributes: [:name]
                                         )
+    end
+
+    def set_portfolio_item
+      @portfolio_item = Collection.find(params[:id])
     end
 
 end
