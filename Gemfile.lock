@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/miguelbertaud/bertaud_view_tool
+  revision: 59987d64d670f7fe1529384572a947bdef80ac14
+  specs:
+    bertaud_view_tool (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -187,6 +193,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bertaud_view_tool!
   bootstrap (~> 4.0.0.alpha6)
   byebug
   coffee-rails (~> 4.2)
