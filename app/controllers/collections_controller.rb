@@ -26,7 +26,7 @@ class CollectionsController < ApplicationController
     @portfolio_item = Collection.new(collection_params)
 
     respond_to do |format|
-      if @@portfolio_item.save
+      if @portfolio_item.save
         format.html { redirect_to collections_path, notice: 'Your portfolio item is now live.' }
       else
         format.html { render :new }
